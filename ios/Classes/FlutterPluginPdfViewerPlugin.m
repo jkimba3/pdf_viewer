@@ -30,9 +30,9 @@ static NSString* kFileName = @"";
 
 -(NSString *)getNumberOfPages:(NSString *)url
 {
-    NSURL * sourcePDFUrl = [[NSURL alloc]] initFileURLWithPath:url
-    CGPDFDocumentRef SourcePDFDocument = CGPDFDocumentCreateWithURL((__bridge CFURLRef)sourcePDFUrl);
-    size_t numberOfPages = CGPDFDocumentGetNumberOfPages(SourcePDFDocument);
+    NSURL * sourcePDFUrl = [[NSURL alloc] initFileURLWithPath:url];
+    CGPDFDocumentRef sourcePDFDocument = CGPDFDocumentCreateWithURL((__bridge CFURLRef)sourcePDFUrl);
+    size_t numberOfPages = CGPDFDocumentGetNumberOfPages(sourcePDFDocument);
     CGPDFDocumentRelease(sourcePDFDocument);
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *temporaryDirectory = [paths objectAtIndex:0];
@@ -64,8 +64,8 @@ static NSString* kFileName = @"";
 -(NSString*)getPage:(NSString *)url ofPage:(size_t)pageNumber
 {
     NSURL * sourcePDFUrl = [[NSURL alloc] initFileURLWithPath:url];
-    CGPDFDocumentRef SourcePDFDocument = CGPDFDocumentCreateWithURL((__bridge CFURLRef)sourcePDFUrl);
-    size_t numberOfPages = CGPDFDocumentGetNumberOfPages(SourcePDFDocument);
+    CGPDFDocumentRef sourcePDFDocument = CGPDFDocumentCreateWithURL((__bridge CFURLRef)sourcePDFUrl);
+    size_t numberOfPages = CGPDFDocumentGetNumberOfPages(sourcePDFDocument);
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *temporaryDirectory = [paths objectAtIndex:0];
     NSString *filePathAndDirectory = [temporaryDirectory stringByAppendingPathComponent:kDirectory];
